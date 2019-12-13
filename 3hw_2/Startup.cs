@@ -25,11 +25,14 @@ namespace _3hw_2
             app.Use(async (context, next) =>
             {
                 z = ((x * x) + (4 * x)) * ((y + 7) * (y + 7));
+                await context.Response.WriteAsync($"y = (x^2 + 4x)(a + 7)^2, ({x}^2 + 4*{x})({y} + 7)^2 = {z} \n");
+                y = y * 3;
                 await next.Invoke();
             });
 
             app.Run(async (context) =>
             {
+                z = ((x * x) + (4 * x)) * ((y + 7) * (y + 7));
                 await context.Response.WriteAsync($"y = (x^2 + 4x)(a + 7)^2, ({x}^2 + 4*{x})({y} + 7)^2 = {z} \n");
             });
         }
